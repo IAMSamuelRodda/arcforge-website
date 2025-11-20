@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arc Forge - Business systems automation and infrastructure services in Sydney, Australia. Custom applications, DevOps, and self-hosted cloud solutions.">
+    <title>Arc Forge - Business Systems Automation | Sydney, Australia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forge': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header - Clean text-only design -->
+    <header class="bg-forge-900 text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight">ARC FORGE</h1>
+                <p class="text-forge-100 mt-1 text-sm">Business Systems Automation</p>
+            </div>
+            <a href="#contact" class="bg-forge-500 hover:bg-forge-600 px-6 py-2 rounded-lg font-semibold transition hidden md:block">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+        <div class="max-w-3xl">
+            <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Automate Your Business.<br>
+                <span class="text-forge-500">Increase Productivity.</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                We build custom software and secure infrastructure for Australian
+                businesses. Save time, cut costs, work smarter.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contact" class="inline-block bg-forge-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-forge-600 transition text-center">
+                    Start a Project
+                </a>
+                <a href="#services" class="inline-block border-2 border-forge-500 text-forge-500 px-8 py-4 rounded-lg font-semibold hover:bg-forge-50 transition text-center">
+                    View Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-gray-50 py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Services</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Proven solutions for common business challenges
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Infrastructure Setup -->
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Infrastructure Setup
+                        </h3>
+                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            1-2 weeks
+                        </span>
+                    </div>
+                    <p class="text-3xl font-bold text-forge-500 mb-4">$1,500</p>
+                    <p class="text-gray-600 mb-6">
+                        VPS provisioning, Docker containerization, CI/CD pipelines,
+                        monitoring, and security. Includes 1 month support.
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Cloud setup (AWS, Digital Ocean)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Automated deployments (GitHub Actions)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Security hardening and SSL certificates
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Monitoring and alerting setup
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Custom Business Apps -->
+                <div class="bg-white p-8 rounded-xl border-2 border-forge-500 hover:shadow-lg transition relative">
+                    <div class="absolute -top-3 right-8 bg-forge-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Popular
+                    </div>
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Custom Business Apps
+                        </h3>
+                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            2-6 weeks
+                        </span>
+                    </div>
+                    <p class="text-3xl font-bold text-forge-500 mb-4">$3,000-8,000</p>
+                    <p class="text-gray-600 mb-6">
+                        Quoting systems, job management, process automation.
+                        Mobile-friendly, offline-capable. Built for your workflow.
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Custom-built for your specific needs
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Works on any device (phone, tablet, laptop)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Offline-first (works without internet)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Training and documentation included
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Self-Hosted Cloud -->
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Self-Hosted Business Cloud
+                        </h3>
+                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            1-2 weeks
+                        </span>
+                    </div>
+                    <p class="text-3xl font-bold text-forge-500 mb-1">
+                        $1,800
+                    </p>
+                    <p class="text-gray-600 text-sm mb-4">+ $150/month support</p>
+                    <p class="text-gray-600 mb-6">
+                        Complete Google Workspace alternative. File sync, passwords,
+                        automation, VPN. Own your data, save money.
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Nextcloud, Vaultwarden, n8n, VPN
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Sydney-hosted (fast, local)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Desktop and mobile apps configured
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Ongoing updates and support
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Automation Consulting -->
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900">
+                            Automation Consulting
+                        </h3>
+                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
+                            Flexible
+                        </span>
+                    </div>
+                    <p class="text-3xl font-bold text-forge-500 mb-1">$150/hr</p>
+                    <p class="text-gray-600 text-sm mb-4">4 hour minimum</p>
+                    <p class="text-gray-600 mb-6">
+                        Process analysis, custom scripting, API integrations,
+                        workflow optimization. Make repetitive work automatic.
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Python, Bash, JavaScript scripting
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            n8n workflow automation (Zapier alternative)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Data processing and reporting
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            API integrations and webhooks
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Portfolio</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Real projects demonstrating our capabilities
+                </p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Project 1 -->
+                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Production VPS Infrastructure</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Self-hosted cloud infrastructure serving 5-20 users. Nextcloud for file sync and calendars,
+                        Vaultwarden for password management, n8n for workflow automation, and Headscale VPN for
+                        secure remote access. Deployed on Digital Ocean (Sydney region) with automatic HTTPS,
+                        monitoring, and backups. Saves $500/month compared to SaaS alternatives.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Terraform</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Caddy</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Nextcloud</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Digital Ocean</span>
+                    </div>
+                    <a href="https://github.com/IAMSamuelRodda/do-vps-prod"
+                       target="_blank"
+                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
+                        View on GitHub
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Offline-First Quoting System</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Progressive Web App (PWA) for landscaping and earthworks company. Works completely offline
+                        for field quotes, syncs when internet available. Built with React, TypeScript, and Firebase.
+                        Mobile-optimized interface for use on job sites. Reduced quote turnaround time from 2 days
+                        to 20 minutes. Deployed to AWS with Terraform infrastructure-as-code.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TypeScript</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">PWA</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Firebase</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
+                    </div>
+                    <a href="https://github.com/IAMSamuelRodda/embark-quoting-system"
+                       target="_blank"
+                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
+                        View on GitHub
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI-Powered Accounting Assistant</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Natural language interface for Xero accounting software using Claude Agent SDK and Model
+                        Context Protocol (MCP). Manage invoices, track expenses, and generate reports through
+                        conversational AI. Mobile-first Progressive Web App with Firebase backend. Demonstrates
+                        advanced AI integration capabilities for business automation.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Claude SDK</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">MCP</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Xero API</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React PWA</span>
+                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Firebase</span>
+                    </div>
+                    <a href="https://github.com/IAMSamuelRodda/zero-agent"
+                       target="_blank"
+                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
+                        View on GitHub
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-50 py-20">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get Started</h2>
+                <p class="text-xl text-gray-600">
+                    Tell us about your project. We'll respond within 24 hours.
+                </p>
+            </div>
+
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="bg-white p-8 rounded-xl shadow-sm">
+                <div class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
+                        <input type="tel" id="phone" name="phone"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                    </div>
+
+                    <div>
+                        <label for="service" class="block text-sm font-semibold text-gray-700 mb-2">Service Interested In</label>
+                        <select id="service" name="service"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                            <option value="">Select a service...</option>
+                            <option value="infrastructure">Infrastructure Setup ($1,500)</option>
+                            <option value="custom-app">Custom Business App ($3,000-8,000)</option>
+                            <option value="cloud">Self-Hosted Cloud ($1,800 + $150/mo)</option>
+                            <option value="consulting">Automation Consulting ($150/hr)</option>
+                            <option value="other">Other / Not Sure</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Tell us about your project *</label>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition"
+                                  placeholder="What problem are you trying to solve? What's your timeline?"></textarea>
+                    </div>
+
+                    <button type="submit"
+                            class="w-full bg-forge-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-forge-600 transition shadow-lg hover:shadow-xl">
+                        Send Message
+                    </button>
+
+                    <p class="text-sm text-gray-500 text-center">
+                        We typically respond within 24 hours. All consultations are free.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-forge-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4">ARC FORGE</h3>
+                    <p class="text-forge-100 text-sm leading-relaxed">
+                        Business systems automation and infrastructure services
+                        for Australian businesses.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-forge-100 text-sm">
+                        <li><a href="#services" class="hover:text-white transition">Infrastructure Setup</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Custom Business Apps</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Self-Hosted Cloud</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Automation Consulting</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-forge-100 text-sm">
+                        <li>Sydney, Australia</li>
+                        <li><a href="mailto:hello@arcforge.au" class="hover:text-white transition">hello@arcforge.au</a></li>
+                        <li><a href="https://github.com/IAMSamuelRodda" target="_blank" class="hover:text-white transition">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-forge-800 pt-8 text-center text-forge-100 text-sm">
+                <p class="mb-2">© 2025 Arc Forge. All rights reserved.</p>
+                <p>ABN: [Your ABN Number]</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
