@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Arc Forge - Business systems automation and infrastructure services in Sydney, Australia. Custom applications, DevOps, and self-hosted cloud solutions.">
     <title>Arc Forge - Business Systems Automation | Sydney, Australia</title>
+
+    <!-- Google Fonts - Distinctive Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,13 +24,54 @@
                             600: '#0284c7',
                             900: '#0c4a6e',
                         }
+                    },
+                    fontFamily: {
+                        'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* Staggered fade-in animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.2s; }
+        .fade-in-3 { animation-delay: 0.3s; }
+        .fade-in-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gradient backgrounds for depth */
+        .bg-hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .bg-services {
+            background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%);
+        }
+
+        .bg-footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+        }
+    </style>
 </head>
-<body class="bg-white">
+<body class="bg-white font-sans">
     <!-- Header - Clean text-only design -->
     <header class="bg-forge-900 text-white py-6 sticky top-0 z-50 shadow-lg">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
@@ -39,17 +86,17 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-6 py-20">
+    <section class="bg-hero max-w-6xl mx-auto px-6 py-20">
         <div class="max-w-3xl">
-            <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 class="fade-in fade-in-1 text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Automate Your Business.<br>
                 <span class="text-forge-500">Increase Productivity.</span>
             </h2>
-            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p class="fade-in fade-in-2 text-xl text-gray-600 mb-8 leading-relaxed">
                 We build custom software and secure infrastructure for Australian
                 businesses. Save time, cut costs, work smarter.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="fade-in fade-in-3 flex flex-col sm:flex-row gap-4">
                 <a href="#contact" class="inline-block bg-forge-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-forge-600 transition text-center">
                     Start a Project
                 </a>
@@ -61,7 +108,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="bg-gray-50 py-20">
+    <section id="services" class="bg-services py-20">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Services</h2>
@@ -409,7 +456,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-forge-900 text-white py-12">
+    <footer class="bg-footer text-white py-12">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
