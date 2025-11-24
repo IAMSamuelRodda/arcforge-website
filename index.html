@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arc Forge - Business systems automation and infrastructure services in Sydney, Australia. Custom applications, DevOps, and self-hosted cloud solutions.">
-    <title>Arc Forge - Business Systems Automation | Sydney, Australia</title>
+    <meta name="description" content="Arc Forge - Stop paying multiple vendors for business tools you don't fully control. Self-hosted cloud infrastructure in Adelaide, Australia. Own your data, save money.">
+    <title>Arc Forge - Your Own Business Cloud | Self-Hosted Infrastructure | Adelaide, Australia</title>
 
-    <!-- Google Fonts - Distinctive Typography -->
+    <!-- Favicon - Terminal Dots -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0e14'/%3E%3Ccircle cx='25' cy='50' r='8' fill='%236e7681'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%236e7681'/%3E%3Ccircle cx='75' cy='50' r='8' fill='%237eb88e'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts - Monospace Terminal Aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -18,16 +21,21 @@
                 extend: {
                     colors: {
                         'forge': {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
+                            'bg-primary': '#0a0e14',
+                            'bg-secondary': '#0f1419',
+                            'bg-tertiary': '#1a1f29',
+                            'border': '#2d333d',
+                            'border-subtle': '#1e2329',
+                            'text-primary': '#c9d1d9',
+                            'text-secondary': '#8b949e',
+                            'text-tertiary': '#6e7681',
+                            'text-dim': '#484f58',
+                            'accent': '#7eb88e',
+                            'accent-dim': '#5a8a6a',
                         }
                     },
                     fontFamily: {
-                        'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
-                        'mono': ['JetBrains Mono', 'monospace'],
+                        'mono': ['JetBrains Mono', 'Inconsolata', 'monospace'],
                     }
                 }
             }
@@ -35,18 +43,89 @@
     </script>
 
     <style>
-        /* Staggered fade-in animations */
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #0f1419;
+            --bg-tertiary: #1a1f29;
+            --border-color: #2d333d;
+            --border-subtle: #1e2329;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --text-dim: #484f58;
+            --accent-primary: #7eb88e;
+            --accent-dim: #5a8a6a;
+            --accent-glow: rgba(126, 184, 142, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Inconsolata', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Grid background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(90deg, rgba(45, 51, 61, 0.3) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(45, 51, 61, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-primary) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Staggered reveal animations */
         .fade-in {
             opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
+            animation: textReveal 0.8s ease-out forwards;
         }
 
         .fade-in-1 { animation-delay: 0.1s; }
-        .fade-in-2 { animation-delay: 0.2s; }
-        .fade-in-3 { animation-delay: 0.3s; }
-        .fade-in-4 { animation-delay: 0.4s; }
+        .fade-in-2 { animation-delay: 0.3s; }
+        .fade-in-3 { animation-delay: 0.5s; }
+        .fade-in-4 { animation-delay: 0.7s; }
 
-        @keyframes fadeInUp {
+        @keyframes textReveal {
+            from {
+                opacity: 0;
+                filter: blur(10px);
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -57,335 +136,582 @@
             }
         }
 
-        /* Gradient backgrounds for depth */
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Terminal header dots */
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+        }
+
+        .dot.red { background: var(--text-dim); border-color: var(--border-color); }
+        .dot.amber { background: var(--text-tertiary); border-color: var(--border-color); }
+        .dot.green { background: var(--accent-dim); border-color: var(--accent-dim); }
+
+        /* Section backgrounds */
         .bg-hero {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .bg-services {
-            background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 50%, #f9fafb 100%);
+            background: var(--bg-primary);
         }
 
         .bg-footer {
-            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+            background: var(--bg-tertiary);
+            border-top: 2px solid var(--border-color);
+        }
+
+        /* Component styles */
+        .card-hover:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent-primary);
+        }
+
+        /* Button hover effects */
+        .pricing-button:hover,
+        .contact-button:hover {
+            background: var(--bg-primary) !important;
+            color: var(--accent-primary) !important;
+            border: 1px solid var(--accent-dim);
+        }
+
+        .secondary-button:hover {
+            background: var(--accent-glow) !important;
+            border-color: var(--accent-primary) !important;
+        }
+
+        /* FAQ Animations */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, margin-top 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            margin-top: 12px;
+            opacity: 1;
+        }
+
+        .faq-icon {
+            transition: transform 0.2s ease;
+        }
+
+        /* Table cell with checkmark */
+        .table-cell-with-icon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .table-cell-icon {
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        /* hCaptcha dark theme styling */
+        .h-captcha {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Portfolio link hover */
+        .portfolio-link:hover {
+            color: var(--text-primary) !important;
+        }
+
+        /* Comparison table mobile responsiveness */
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+
+        .comparison-table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .comparison-table-wrapper::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+            border-radius: 4px;
+        }
+
+        .comparison-table-wrapper::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        .comparison-table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-dim);
+        }
+
+        /* Mobile table adjustments */
+        @media (max-width: 768px) {
+            .table-header {
+                font-size: 0.75rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+
+            .comparison-table td {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem;
+            }
+
+            /* Reduce padding on savings callout for mobile */
+            .savings-callout {
+                padding: 1.5rem !important;
+            }
+
+            .savings-callout .text-7xl {
+                font-size: 3rem !important;
+            }
+
+            .savings-callout .text-5xl {
+                font-size: 2rem !important;
+            }
+
+            .savings-callout .text-2xl {
+                font-size: 1.25rem !important;
+            }
+
+            .savings-callout .text-lg {
+                font-size: 0.875rem !important;
+            }
+        }
+
+        .section-container {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="bg-white font-sans">
-    <!-- Header - Clean text-only design -->
-    <header class="bg-forge-900 text-white py-6 sticky top-0 z-50 shadow-lg">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <div>
-                <h1 class="text-3xl font-bold tracking-tight">ARC FORGE</h1>
-                <p class="text-forge-100 mt-1 text-sm">Business Systems Automation</p>
+<body class="font-mono">
+    <!-- Terminal Header -->
+    <header class="sticky top-0 z-50 section-container" style="background: var(--bg-tertiary); border-bottom: 2px solid var(--border-color); animation: slideDown 0.5s ease-out;">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot amber"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight" style="color: var(--text-primary);">
+                        ARC FORGE
+                    </h1>
+                    <p class="text-xs font-light" style="color: var(--text-tertiary); letter-spacing: 0.1em;">YOUR OWN BUSINESS CLOUD</p>
+                </div>
             </div>
-            <a href="#contact" class="bg-forge-500 hover:bg-forge-600 px-6 py-2 rounded-lg font-semibold transition hidden md:block">
-                Get Started
+            <a href="#contact" class="secondary-button px-6 py-2 font-semibold transition hidden md:block uppercase tracking-wider" style="background: var(--bg-primary); color: var(--accent-primary); border: 2px solid var(--accent-dim); border-radius: 4px;">
+                GET STARTED
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-hero max-w-6xl mx-auto px-6 py-20">
-        <div class="max-w-3xl">
-            <h2 class="fade-in fade-in-1 text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Automate Your Business.<br>
-                <span class="text-forge-500">Increase Productivity.</span>
+    <section class="bg-hero section-container px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="fade-in fade-in-1 text-5xl md:text-6xl font-extrabold mb-6 leading-tight" style="color: var(--text-primary); letter-spacing: -0.02em;">
+                Your Business Technology<br>
+                <span style="color: var(--accent-primary);"># Control Your Own Infrastructure</span>
             </h2>
-            <p class="fade-in fade-in-2 text-xl text-gray-600 mb-8 leading-relaxed">
-                We build custom software and secure infrastructure for Australian
-                businesses. Save time, cut costs, work smarter.
+            <p class="fade-in fade-in-2 text-xl mb-4 leading-relaxed font-semibold" style="color: var(--text-primary);">
+                Stop paying multiple vendors for business tools you don't fully control.
             </p>
-            <div class="fade-in fade-in-3 flex flex-col sm:flex-row gap-4">
-                <a href="#contact" class="inline-block bg-forge-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-forge-600 transition text-center">
-                    Start a Project
+            <p class="fade-in fade-in-2 text-lg mb-8 leading-relaxed font-light" style="color: var(--text-secondary);">
+                Own your infrastructure instead. Get fully deployed self-hosted solutions on your own private server - file storage, password management, automation, remote access, and website hosting.
+            </p>
+            <div class="fade-in fade-in-3 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#pricing" class="pricing-button inline-block px-8 py-4 font-bold transition text-center uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
+                    VIEW PRICING
                 </a>
-                <a href="#services" class="inline-block border-2 border-forge-500 text-forge-500 px-8 py-4 rounded-lg font-semibold hover:bg-forge-50 transition text-center">
-                    View Services
+                <a href="#comparison" class="secondary-button inline-block px-8 py-4 font-bold transition text-center uppercase tracking-wider" style="background: var(--bg-primary); color: var(--accent-primary); border: 2px solid var(--accent-dim); border-radius: 4px;">
+                    WHY SELF-HOSTED?
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="bg-services py-20">
+    <!-- Comparison Section -->
+    <section id="comparison" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Services</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Proven solutions for common business challenges
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-primary); letter-spacing: -0.02em;">Why Own Your Infrastructure?</h2>
+                <p class="text-lg font-light max-w-3xl mx-auto" style="color: var(--text-secondary); letter-spacing: 0.05em;">
+                    <span style="color: var(--accent-dim);"># </span>Perfect for fast-moving small-to-medium-sized teams, tired of rising subscription costs and vendor dependencies
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Infrastructure Setup -->
-                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="text-2xl font-bold text-gray-900">
-                            Infrastructure Setup
-                        </h3>
-                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
-                            1-2 weeks
-                        </span>
-                    </div>
-                    <p class="text-3xl font-bold text-forge-500 mb-4">$1,500</p>
-                    <p class="text-gray-600 mb-6">
-                        VPS provisioning, Docker containerization, CI/CD pipelines,
-                        monitoring, and security. Includes 1 month support.
+            <div class="comparison-table-wrapper mb-8" style="animation: fadeIn 0.8s ease-out 0.4s both;">
+                <table class="comparison-table border-collapse" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); width: 100%; min-width: 600px;">
+                    <thead>
+                        <tr style="background: var(--bg-tertiary);">
+                            <th class="table-header text-center text-sm font-extrabold uppercase tracking-wider" style="color: var(--text-secondary); border: 1px solid var(--border-color); width: 30%; padding: 1rem 1.5rem;">What You Get</th>
+                            <th class="table-header text-center text-sm font-extrabold uppercase tracking-wider" style="color: var(--accent-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim); padding: 1rem 1.5rem;">Your Own Infrastructure</th>
+                            <th class="table-header text-center text-sm font-extrabold uppercase tracking-wider" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim); padding: 1rem 1.5rem;">Cloud Subscriptions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="card-hover transition-all duration-200">
+                            <td class="px-6 py-4 font-semibold text-center" style="color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color);">Control & Ownership</td>
+                            <td class="px-6 py-4" style="color: var(--text-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Full control & ownership</span>
+                                    <span class="table-cell-icon" style="color: var(--accent-primary); opacity: 0.7;">[✓]</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Limited by vendor terms</span>
+                                    <span class="table-cell-icon" style="opacity: 0.7;">[✗]</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="card-hover transition-all duration-200">
+                            <td class="px-6 py-4 font-semibold text-center" style="color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color);">Data Privacy</td>
+                            <td class="px-6 py-4" style="color: var(--text-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Your private server, you control access</span>
+                                    <span class="table-cell-icon" style="color: var(--accent-primary); opacity: 0.7;">[✓]</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Multi-tenant databases, vendor access</span>
+                                    <span class="table-cell-icon" style="opacity: 0.7;">[✗]</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="card-hover transition-all duration-200">
+                            <td class="px-6 py-4 font-semibold text-center" style="color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color);">System Integration</td>
+                            <td class="px-6 py-4" style="color: var(--text-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Integrated platform you control</span>
+                                    <span class="table-cell-icon" style="color: var(--accent-primary); opacity: 0.7;">[✓]</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>5+ separate tools, no integration</span>
+                                    <span class="table-cell-icon" style="opacity: 0.7;">[✗]</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="card-hover transition-all duration-200">
+                            <td class="px-6 py-4 font-semibold text-center" style="color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color);">Price Predictability</td>
+                            <td class="px-6 py-4" style="color: var(--text-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Fixed pricing, you decide</span>
+                                    <span class="table-cell-icon" style="color: var(--accent-primary); opacity: 0.7;">[✓]</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Unexpected price increases</span>
+                                    <span class="table-cell-icon" style="opacity: 0.7;">[✗]</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="card-hover transition-all duration-200">
+                            <td class="px-6 py-4 font-semibold text-center" style="color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color);">Customization</td>
+                            <td class="px-6 py-4" style="color: var(--text-primary); border: 1px solid var(--border-color); border-left: 2px solid var(--accent-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Fully customizable</span>
+                                    <span class="table-cell-icon" style="color: var(--accent-primary); opacity: 0.7;">[✓]</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4" style="color: var(--text-secondary); border: 1px solid var(--border-color); border-left: 2px solid var(--text-dim);">
+                                <div class="table-cell-with-icon">
+                                    <span>Limited to vendor features</span>
+                                    <span class="table-cell-icon" style="opacity: 0.7;">[✗]</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cost Footer -->
+            <div class="text-center py-5 mb-8" style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-top: 2px solid var(--accent-dim); font-size: 14px; color: var(--text-secondary);">
+                <strong style="color: var(--text-primary);">Ongoing costs:</strong> SaaS <span style="color: var(--accent-primary); font-weight: 700;">~$590/mo</span> vs Self-hosted <span style="color: var(--accent-primary); font-weight: 700;">~$75/mo</span> <span style="color: var(--text-tertiary);">(example for 5-person team)</span>
+            </div>
+
+            <!-- Savings Callout -->
+            <div class="savings-callout p-10 text-center" style="background: var(--bg-tertiary); border: 1px solid var(--accent-dim); position: relative; overflow: hidden; animation: fadeIn 0.8s ease-out 0.6s both;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--accent-dim);"></div>
+                <div class="text-lg mb-3" style="color: var(--text-secondary);">
+                    <span style="color: var(--text-secondary);">$7,080/yr</span>
+                    <span style="margin: 0 12px; color: var(--text-tertiary);">−</span>
+                    <span style="color: var(--accent-primary);">$900/yr</span>
+                    <span style="margin: 0 12px; color: var(--text-tertiary);">=</span>
+                </div>
+                <div class="text-7xl font-black mb-2" style="color: var(--accent-primary); letter-spacing: -0.02em; line-height: 1;">$6,180/year</div>
+                <div class="text-5xl font-black mb-4" style="color: var(--accent-primary); letter-spacing: 0.15em;">SAVED</div>
+                <div class="text-2xl font-semibold mb-8" style="color: var(--text-secondary);">87% Cost Reduction</div>
+                <a href="#pricing" class="pricing-button inline-block px-8 py-4 font-bold transition uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
+                    GET STARTED
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 section-container" style="background: var(--bg-primary);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-primary); letter-spacing: -0.02em;">
+                    Self-Hosted Business Cloud
+                </h2>
+                <p class="text-lg font-light max-w-3xl mx-auto" style="color: var(--text-secondary); letter-spacing: 0.05em;">
+                    <span style="color: var(--accent-dim);"># </span>Choose the right tools for your team and get them working together seamlessly.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Essential Tier -->
+                <div class="p-8 border transition-all duration-200 card-hover flex flex-col" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;">
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--text-primary);">Essential</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$1,200</p>
+                    <p class="mb-6 text-sm text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold" style="color: var(--text-primary);">7 days delivery</span><br>
+                        2 revisions included
                     </p>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul class="space-y-3 mb-6" style="color: var(--text-secondary);">
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Cloud setup (AWS, Digital Ocean)
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>VPS provisioning & Docker setup</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Automated deployments (GitHub Actions)
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Core services: Nextcloud, Vaultwarden</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Security hardening and SSL certificates
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>SSL certificates & security</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Monitoring and alerting setup
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Documentation included</span>
                         </li>
                     </ul>
+                    <a href="#contact" class="pricing-button mt-auto block text-center px-6 py-3 font-bold transition uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
+                        Get Started
+                    </a>
                 </div>
 
-                <!-- Custom Business Apps -->
-                <div class="bg-white p-8 rounded-xl border-2 border-forge-500 hover:shadow-lg transition relative">
-                    <div class="absolute -top-3 right-8 bg-forge-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                <!-- Professional Tier (Popular) -->
+                <div class="p-8 border-2 transition-all duration-200 relative card-hover flex flex-col" style="background: var(--bg-tertiary); border-color: var(--accent-dim); border-radius: 4px;">
+                    <div class="absolute -top-3 right-8 px-4 py-1 rounded-full text-sm font-semibold" style="background: var(--accent-primary); color: var(--bg-primary);">
                         Popular
                     </div>
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="text-2xl font-bold text-gray-900">
-                            Custom Business Apps
-                        </h3>
-                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
-                            2-6 weeks
-                        </span>
-                    </div>
-                    <p class="text-3xl font-bold text-forge-500 mb-4">$3,000-8,000</p>
-                    <p class="text-gray-600 mb-6">
-                        Quoting systems, job management, process automation.
-                        Mobile-friendly, offline-capable. Built for your workflow.
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--text-primary);">Professional</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$2,000</p>
+                    <p class="mb-6 text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold">10 days delivery</span><br>
+                        3 revisions included
                     </p>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul class="space-y-3 mb-6" style="color: var(--text-secondary);">
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Custom-built for your specific needs
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Everything in Starter, plus:</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Works on any device (phone, tablet, laptop)
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>n8n workflow automation</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Offline-first (works without internet)
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>VPN (Headscale) for remote access</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Training and documentation included
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Remote connection support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Desktop & mobile app setup</span>
                         </li>
                     </ul>
+                    <a href="#contact" class="pricing-button mt-auto block text-center px-6 py-3 font-bold transition uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
+                        Get Started
+                    </a>
                 </div>
 
-                <!-- Self-Hosted Cloud -->
-                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="text-2xl font-bold text-gray-900">
-                            Self-Hosted Business Cloud
-                        </h3>
-                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
-                            1-2 weeks
-                        </span>
-                    </div>
-                    <p class="text-3xl font-bold text-forge-500 mb-1">
-                        $1,800
+                <!-- Premium Tier -->
+                <div class="p-8 border transition-all duration-200 card-hover flex flex-col" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;">
+                    <h3 class="text-2xl font-bold mb-4 text-center" style="color: var(--text-primary);">Premium</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$3,200</p>
+                    <p class="mb-6 text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold">14 days delivery</span><br>
+                        3 revisions included
                     </p>
-                    <p class="text-gray-600 text-sm mb-4">+ $150/month support</p>
-                    <p class="text-gray-600 mb-6">
-                        Complete Google Workspace alternative. File sync, passwords,
-                        automation, VPN. Own your data, save money.
-                    </p>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul class="space-y-3 mb-6" style="color: var(--text-secondary);">
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Nextcloud, Vaultwarden, n8n, VPN
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Everything in Standard, plus:</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Sydney-hosted (fast, local)
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Website hosting setup</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Desktop and mobile apps configured
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Monitoring & alerting</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Ongoing updates and support
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Automated backups</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span style="color: var(--accent-primary); margin-right: 12px;">[✓]</span>
+                            <span>Extended training & handoff</span>
                         </li>
                     </ul>
+                    <a href="#contact" class="pricing-button mt-auto block text-center px-6 py-3 font-bold transition uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+
+            <!-- What's Included Note -->
+            <div class="mt-12 text-center">
+                <p class="text-lg font-light max-w-3xl mx-auto" style="color: var(--text-secondary); letter-spacing: 0.05em;">
+                    <span style="color: var(--accent-dim);"># </span>All tiers include 2 weeks post-launch support. No mandatory ongoing payments - you only pay your VPS provider (~$75/mo). You own the infrastructure completely.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-primary); letter-spacing: -0.02em;">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="faq-item p-6 border transition-all duration-200 cursor-pointer" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Do I need technical knowledge to use this?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        No. Arc Forge handles all technical setup and provides clear documentation. You get a fully working system with user-friendly interfaces (web-based, mobile apps). Your team uses it just like they'd use Google Workspace or any other cloud service.
+                    </p>
                 </div>
 
-                <!-- Automation Consulting -->
-                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="text-2xl font-bold text-gray-900">
-                            Automation Consulting
-                        </h3>
-                        <span class="bg-forge-100 text-forge-900 px-3 py-1 rounded-full text-sm font-semibold">
-                            Flexible
-                        </span>
+                <!-- FAQ 2 -->
+                <div class="faq-item p-6 border transition-all duration-200 cursor-pointer" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Can this really replace Google Workspace / Office 365?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
                     </div>
-                    <p class="text-3xl font-bold text-forge-500 mb-1">$150/hr</p>
-                    <p class="text-gray-600 text-sm mb-4">4 hour minimum</p>
-                    <p class="text-gray-600 mb-6">
-                        Process analysis, custom scripting, API integrations,
-                        workflow optimization. Make repetitive work automatic.
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        Yes, for file storage, collaboration, and basic productivity needs. Nextcloud provides file sync (like Dropbox), calendar, contacts, and document editing. Plus, you get password management, automation, and VPN that you'd otherwise pay extra for.
                     </p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Python, Bash, JavaScript scripting
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            n8n workflow automation (Zapier alternative)
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Data processing and reporting
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-forge-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            API integrations and webhooks
-                        </li>
-                    </ul>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item p-6 border transition-all duration-200 cursor-pointer" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">What support do you provide after delivery?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        2 weeks of post-launch support is included after project approval. During this period, Arc Forge is available to answer questions, troubleshoot any issues, and ensure smooth operation. After that, optional ongoing monitoring and support packages are available.
+                    </p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item p-6 border transition-all duration-200 cursor-pointer" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">What happens if something breaks after the 2-week support period?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        The infrastructure is designed to be stable and low-maintenance. You'll have complete documentation for troubleshooting. Optional ongoing support packages are available that include monitoring, updates, and priority assistance.
+                    </p>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item p-6 border transition-all duration-200 cursor-pointer" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Do I need to keep paying you monthly?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        No. After the one-time setup fee and 2-week support period, there are no mandatory ongoing payments. You pay your VPS provider directly (~$75/mo). You own the infrastructure and can manage it yourself or hire anyone you want.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20">
+    <section id="portfolio" class="py-20 section-container" style="background: var(--bg-primary);">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Portfolio</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Real projects demonstrating our capabilities
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-primary); letter-spacing: -0.02em;">Portfolio</h2>
+                <p class="text-lg font-light max-w-2xl mx-auto" style="color: var(--text-secondary); letter-spacing: 0.05em;">
+                    <span style="color: var(--accent-dim);"># </span>Real projects demonstrating our capabilities
                 </p>
             </div>
 
             <div class="space-y-8">
                 <!-- Project 1 -->
-                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Production VPS Infrastructure</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        Self-hosted cloud infrastructure serving 5-20 users. Nextcloud for file sync and calendars,
-                        Vaultwarden for password management, n8n for workflow automation, and Headscale VPN for
-                        secure remote access. Deployed on Digital Ocean (Sydney region) with automatic HTTPS,
-                        monitoring, and backups. Saves $500/month compared to SaaS alternatives.
+                <div class="pl-8 pr-6 py-6 border transition-all duration-200 card-hover" style="background: var(--bg-tertiary); border-left: 4px solid var(--accent-dim); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Private Cloud Setup</h3>
+                    <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">
+                        Complete self-hosted platform for 5-20 users with file storage, password management, workflow automation, and secure remote access. Open source codebase available for self-deployment. Saves $500/month vs SaaS.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Terraform</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Caddy</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Nextcloud</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Digital Ocean</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Terraform</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Docker</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Caddy</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Nextcloud</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Digital Ocean</span>
                     </div>
-                    <a href="https://github.com/IAMSamuelRodda/do-vps-prod"
+                    <a href="https://github.com/IAMSamuelRodda/business-cloud-template"
                        target="_blank"
-                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
-                        View on GitHub
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
+                       class="portfolio-link font-semibold inline-flex items-center transition-colors" style="color: var(--accent-primary);">
+                        View on GitHub →
                     </a>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Offline-First Quoting System</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        Progressive Web App (PWA) for landscaping and earthworks company. Works completely offline
-                        for field quotes, syncs when internet available. Built with React, TypeScript, and Firebase.
-                        Mobile-optimized interface for use on job sites. Reduced quote turnaround time from 2 days
-                        to 20 minutes. Deployed to AWS with Terraform infrastructure-as-code.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TypeScript</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">PWA</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Firebase</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
-                    </div>
-                    <a href="https://github.com/IAMSamuelRodda/embark-quoting-system"
-                       target="_blank"
-                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
-                        View on GitHub
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-white border-l-4 border-forge-500 pl-8 pr-6 py-6 rounded-r-lg shadow-sm hover:shadow-md transition">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">AI-Powered Accounting Assistant</h3>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
+                <div class="pl-8 pr-6 py-6 border transition-all duration-200 card-hover" style="background: var(--bg-tertiary); border-left: 4px solid var(--accent-dim); border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--text-primary);">Accounting Assistant</h3>
+                    <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">
                         Natural language interface for Xero accounting software using Claude Agent SDK and Model
                         Context Protocol (MCP). Manage invoices, track expenses, and generate reports through
                         conversational AI. Mobile-first Progressive Web App with Firebase backend. Demonstrates
                         advanced AI integration capabilities for business automation.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Claude SDK</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">MCP</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Xero API</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React PWA</span>
-                        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Firebase</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Claude SDK</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">MCP</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Xero API</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">React PWA</span>
+                        <span class="px-3 py-1 text-sm font-semibold" style="background: var(--bg-primary); color: var(--text-secondary); border: 1px solid var(--border-color);">Firebase</span>
                     </div>
                     <a href="https://github.com/IAMSamuelRodda/zero-agent"
                        target="_blank"
-                       class="text-forge-500 hover:text-forge-600 font-semibold inline-flex items-center">
-                        View on GitHub
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
+                       class="portfolio-link font-semibold inline-flex items-center transition-colors" style="color: var(--accent-primary);">
+                        View on GitHub →
                     </a>
                 </div>
             </div>
@@ -393,61 +719,73 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gray-50 py-20">
+    <section id="contact" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get Started</h2>
-                <p class="text-xl text-gray-600">
+                <h2 class="text-4xl font-bold mb-4" style="color: var(--text-primary); letter-spacing: -0.02em;">Get Started</h2>
+                <p class="text-lg font-light" style="color: var(--text-secondary);">
                     Tell us about your project. We'll respond within 24 hours.
                 </p>
             </div>
 
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="bg-white p-8 rounded-xl shadow-sm">
+            <form action="https://api.web3forms.com/submit" method="POST" class="p-8 border" style="background: var(--bg-tertiary); border-color: var(--border-color); border-radius: 4px;">
+                <!-- Web3Forms Configuration -->
+                <!-- Get your free access key at https://web3forms.com -->
+                <!-- Email: iamarcforge@proton.me (receives from hello@arcforge.au via Cloudflare) -->
+                <input type="hidden" name="access_key" value="a88aea8d-2911-4be4-956d-cebfcf8f3984">
+                <input type="hidden" name="subject" value="New Contact Form Submission - arcforge.au">
+                <input type="hidden" name="from_name" value="Arc Forge Website">
+                <input type="hidden" name="redirect" value="https://arcforge.au/?success=true#contact">
+
                 <div class="space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                        <label for="name" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Name *</label>
                         <input type="text" id="name" name="name" required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
                     </div>
 
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                        <label for="email" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Email *</label>
                         <input type="email" id="email" name="email" required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
                     </div>
 
                     <div>
-                        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
+                        <label for="phone" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Phone</label>
                         <input type="tel" id="phone" name="phone"
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
                     </div>
 
                     <div>
-                        <label for="service" class="block text-sm font-semibold text-gray-700 mb-2">Service Interested In</label>
+                        <label for="service" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Service Interested In</label>
                         <select id="service" name="service"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition">
+                                class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
                             <option value="">Select a service...</option>
-                            <option value="infrastructure">Infrastructure Setup ($1,500)</option>
-                            <option value="custom-app">Custom Business App ($3,000-8,000)</option>
-                            <option value="cloud">Self-Hosted Cloud ($1,800 + $150/mo)</option>
-                            <option value="consulting">Automation Consulting ($150/hr)</option>
+                            <option value="starter">Starter ($1,200)</option>
+                            <option value="standard">Standard ($2,000)</option>
+                            <option value="advanced">Advanced ($3,200)</option>
                             <option value="other">Other / Not Sure</option>
                         </select>
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Tell us about your project *</label>
+                        <label for="message" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Tell us about your project *</label>
                         <textarea id="message" name="message" rows="5" required
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-forge-500 focus:border-transparent transition"
+                                  class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;"
                                   placeholder="What problem are you trying to solve? What's your timeline?"></textarea>
                     </div>
 
+                    <!-- Success Message (hidden by default, shown via JS) -->
+                    <div id="form-success" class="hidden p-4 border text-center" style="background: var(--bg-tertiary); border-color: var(--accent-primary); color: var(--accent-primary); border-radius: 4px; margin-bottom: 1rem;">
+                        ✓ Message sent successfully! We'll respond within 24 hours.
+                    </div>
+
                     <button type="submit"
-                            class="w-full bg-forge-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-forge-600 transition shadow-lg hover:shadow-xl">
+                            class="contact-button w-full px-8 py-4 font-bold transition uppercase tracking-wider" style="background: var(--accent-primary); color: var(--bg-primary); border-radius: 4px;">
                         Send Message
                     </button>
 
-                    <p class="text-sm text-gray-500 text-center">
+                    <p class="text-sm text-center" style="color: var(--text-tertiary);">
                         We typically respond within 24 hours. All consultations are free.
                     </p>
                 </div>
@@ -456,38 +794,34 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-footer text-white py-12">
+    <footer class="py-12 section-container" style="background: var(--bg-tertiary); border-top: 2px solid var(--border-color);">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="font-bold text-xl mb-4">ARC FORGE</h3>
-                    <p class="text-forge-100 text-sm leading-relaxed">
+                    <h3 class="font-bold text-xl mb-4" style="color: var(--text-primary);">
+                        ARC FORGE
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
                         Business systems automation and infrastructure services
                         for Australian businesses.
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4">Services</h4>
-                    <ul class="space-y-2 text-forge-100 text-sm">
-                        <li><a href="#services" class="hover:text-white transition">Infrastructure Setup</a></li>
-                        <li><a href="#services" class="hover:text-white transition">Custom Business Apps</a></li>
-                        <li><a href="#services" class="hover:text-white transition">Self-Hosted Cloud</a></li>
-                        <li><a href="#services" class="hover:text-white transition">Automation Consulting</a></li>
-                    </ul>
+                    <!-- Empty space -->
                 </div>
 
                 <div>
-                    <h4 class="font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-forge-100 text-sm">
-                        <li>Sydney, Australia</li>
-                        <li><a href="mailto:hello@arcforge.au" class="hover:text-white transition">hello@arcforge.au</a></li>
-                        <li><a href="https://github.com/IAMSamuelRodda" target="_blank" class="hover:text-white transition">GitHub</a></li>
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Contact</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li>Adelaide, Australia</li>
+                        <li><a href="mailto:hello@arcforge.au" class="transition hover:opacity-80" style="color: var(--accent-primary);">hello@arcforge.au</a></li>
+                        <li><a href="https://github.com/IAMSamuelRodda" target="_blank" class="transition hover:opacity-80" style="color: var(--accent-primary);">GitHub</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-forge-800 pt-8 text-center text-forge-100 text-sm">
+            <div class="pt-8 text-center text-sm" style="border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
                 <p class="mb-2">© 2025 Arc Forge. All rights reserved.</p>
                 <p>ABN: 66 913 411 628</p>
             </div>
@@ -508,6 +842,38 @@
                     });
                 }
             });
+        });
+
+        // FAQ Toggle Function with Slide Animation
+        function toggleFAQ(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '[+]';
+            } else {
+                answer.classList.add('active');
+                icon.textContent = '[−]';
+            }
+        }
+
+        // Show success message if form was submitted
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                const successMsg = document.getElementById('form-success');
+                if (successMsg) {
+                    successMsg.classList.remove('hidden');
+                    // Scroll to contact form
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                    // Remove success parameter from URL after 5 seconds
+                    setTimeout(function() {
+                        const newUrl = window.location.pathname + window.location.hash;
+                        window.history.replaceState({}, document.title, newUrl);
+                    }, 5000);
+                }
+            }
         });
     </script>
 </body>
