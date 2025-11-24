@@ -8,7 +8,7 @@ set -e  # Exit on error
 # Configuration
 DROPLET_IP="170.64.169.203"
 DROPLET_USER="root"
-REMOTE_PATH="/var/www/arcforge.au"
+REMOTE_PATH="/srv/arcforge.au"
 LOCAL_FILE="index.html"
 
 echo "🚀 Deploying Arc Forge website to production droplet..."
