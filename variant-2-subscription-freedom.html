@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arc Forge - Stop renting your business tools. Own them. One setup fee, then just hosting costs. Your server, your data, your rules.">
+    <title>Arc Forge - Own Your Business Tools | Adelaide, Australia</title>
+
+    <!-- Favicon - Terminal Dots -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230f1419'/%3E%3Ccircle cx='25' cy='50' r='8' fill='%236e7681'/%3E%3Ccircle cx='50' cy='50' r='8' fill='%236e7681'/%3E%3Ccircle cx='75' cy='50' r='8' fill='%237eb88e'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forge': {
+                            'bg-primary': '#0a0e14',
+                            'bg-secondary': '#0f1419',
+                            'bg-tertiary': '#1a1f29',
+                            'border': '#2d333d',
+                            'border-subtle': '#1e2329',
+                            'text-primary': '#c9d1d9',
+                            'text-secondary': '#8b949e',
+                            'text-tertiary': '#6e7681',
+                            'text-dim': '#484f58',
+                            'accent': '#7eb88e',
+                            'accent-dim': '#5a8a6a',
+                        }
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Inconsolata', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #0f1419;
+            --bg-tertiary: #1a1f29;
+            --border-color: #2d333d;
+            --border-subtle: #1e2329;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --text-dim: #484f58;
+            --accent-primary: #7eb88e;
+            --accent-dim: #5a8a6a;
+            --accent-glow: rgba(126, 184, 142, 0.15);
+            --warning: #d29922;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Inconsolata', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(90deg, rgba(45, 51, 61, 0.3) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(45, 51, 61, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-primary) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: textReveal 0.8s ease-out forwards;
+        }
+
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.3s; }
+        .fade-in-3 { animation-delay: 0.5s; }
+        .fade-in-4 { animation-delay: 0.7s; }
+
+        @keyframes textReveal {
+            from {
+                opacity: 0;
+                filter: blur(10px);
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+        }
+
+        .dot.red { background: var(--text-dim); border-color: var(--border-color); }
+        .dot.amber { background: var(--text-tertiary); border-color: var(--border-color); }
+        .dot.green { background: var(--accent-dim); border-color: var(--accent-dim); }
+
+        .bg-hero {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-hover:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent-primary);
+        }
+
+        .pricing-button:hover,
+        .contact-button:hover {
+            background: var(--bg-primary) !important;
+            color: var(--accent-primary) !important;
+            border: 1px solid var(--accent-dim);
+        }
+
+        .secondary-button:hover {
+            background: var(--accent-glow) !important;
+            border-color: var(--accent-primary) !important;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, margin-top 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            margin-top: 12px;
+            opacity: 1;
+        }
+
+        .section-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            font-weight: 300;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .card-description {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+        }
+
+        .card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .card-border-accent {
+            border-left: 4px solid var(--accent-dim);
+        }
+
+        .card-border-warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .pricing-card {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card-popular {
+            border: 2px solid var(--accent-dim);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -0.75rem;
+            right: 2rem;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-secondary {
+            background: var(--bg-primary);
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-dim);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-icon {
+            margin-right: 0.75rem;
+            color: var(--accent-primary);
+        }
+
+        /* Comparison table */
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: var(--border-color);
+        }
+
+        .comparison-cell {
+            background: var(--bg-tertiary);
+            padding: 1rem 1.5rem;
+        }
+
+        .comparison-header {
+            background: var(--bg-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-label {
+            font-weight: 600;
+        }
+
+        .checkmark {
+            color: var(--accent-primary);
+        }
+
+        .crossmark {
+            color: var(--text-dim);
+        }
+
+        /* Price strike */
+        .price-old {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        /* Counter animation */
+        .counter {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+            .comparison-cell:first-child {
+                font-weight: 700;
+                background: var(--bg-primary);
+            }
+            .counter {
+                font-size: 3rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-mono">
+    <!-- Terminal Header -->
+    <header class="sticky top-0 z-50 section-container" style="background: var(--bg-tertiary); border-bottom: 2px solid var(--border-color); animation: slideDown 0.5s ease-out;">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot amber"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight" style="color: var(--text-primary);">
+                        ARC FORGE
+                    </h1>
+                    <p class="text-xs font-light" style="color: var(--text-tertiary); letter-spacing: 0.1em;">OWN YOUR TOOLS</p>
+                </div>
+            </div>
+            <a href="#contact" class="btn btn-secondary secondary-button px-6 py-2 hidden md:block uppercase tracking-wider">
+                BREAK FREE
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-hero section-container px-6 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="fade-in fade-in-1 text-sm mb-4 uppercase tracking-widest" style="color: var(--warning);">
+                The average small business spends $590/month on subscriptions
+            </p>
+            <h2 class="fade-in fade-in-1 text-4xl md:text-5xl font-extrabold mb-6 leading-tight" style="color: var(--text-primary); letter-spacing: -0.02em;">
+                Stop Renting Your<br>
+                <span style="color: var(--accent-primary);">Business Tools</span>
+            </h2>
+            <p class="fade-in fade-in-2 text-xl mb-4 leading-relaxed font-light" style="color: var(--text-secondary);">
+                Every month, you pay Dropbox. Google. Password apps. File sharing.
+                <strong style="color: var(--text-primary);">And every year, they raise the prices.</strong>
+            </p>
+            <p class="fade-in fade-in-2 text-lg mb-8 leading-relaxed font-light" style="color: var(--text-tertiary);">
+                What if you just... owned your tools? We set up everything on a server that's actually yours.
+                Pay once for setup. Then just ~$75/month hosting. No more price hikes. No more "we're updating our terms" emails.
+            </p>
+            <div class="fade-in fade-in-3 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn btn-primary pricing-button px-8 py-4 text-center uppercase tracking-wider">
+                    OWN YOUR TOOLS
+                </a>
+                <a href="#comparison" class="btn btn-secondary secondary-button px-8 py-4 text-center uppercase tracking-wider">
+                    SEE THE DIFFERENCE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Subscription Trap Section -->
+    <section id="problem" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl">The Subscription Trap</h2>
+                <p class="section-subtitle">
+                    You're not a customer. You're a hostage.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="card card-border-warning p-6">
+                    <h3 class="card-title" style="color: var(--warning);">The Price Creep</h3>
+                    <p class="card-description">
+                        SaaS prices went up <strong>11.4%</strong> last year. Inflation was 2.7%.
+                        60% of vendors now hide price increases by bundling in "features" you didn't ask for.
+                        And there's nothing you can do about it.
+                    </p>
+                </div>
+                <div class="card card-border-warning p-6">
+                    <h3 class="card-title" style="color: var(--warning);">The Eviction Notice</h3>
+                    <p class="card-description">
+                        Stop paying? Your data's gone. The service shuts down? Scramble to migrate.
+                        They change the terms? Accept or leave. You're renting, and landlords can do what they want.
+                    </p>
+                </div>
+                <div class="card card-border-warning p-6">
+                    <h3 class="card-title" style="color: var(--warning);">The Data Question</h3>
+                    <p class="card-description">
+                        Your files sit on servers shared with thousands of other businesses.
+                        Their security breach is your security breach. And somewhere in those terms you clicked "accept" on,
+                        they probably have rights to your data you didn't know about.
+                    </p>
+                </div>
+                <div class="card card-border-warning p-6">
+                    <h3 class="card-title" style="color: var(--warning);">The Never-Ending Payment</h3>
+                    <p class="card-description">
+                        You've paid $10,000+ for Dropbox over the years. What do you own?
+                        Nothing. Stop paying tomorrow and it's like you were never there.
+                        That's not ownership. That's rent.
+                    </p>
+                </div>
+            </div>
+
+            <!-- The math -->
+            <div class="card p-8 text-center" style="border: 2px solid var(--warning);">
+                <p class="text-lg mb-4" style="color: var(--text-secondary);">
+                    Average small business subscription spend:
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-4 mb-4">
+                    <span class="counter">$590</span>
+                    <span class="text-2xl" style="color: var(--text-tertiary);">/month</span>
+                    <span class="text-2xl" style="color: var(--text-tertiary);">=</span>
+                    <span class="counter">$7,080</span>
+                    <span class="text-2xl" style="color: var(--text-tertiary);">/year</span>
+                </div>
+                <p class="text-lg" style="color: var(--text-tertiary);">
+                    And you don't own any of it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="py-20 section-container" style="background: var(--bg-primary);">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl">Renting vs Owning</h2>
+                <p class="section-subtitle">
+                    What changes when your tools are actually yours.
+                </p>
+            </div>
+
+            <div class="card overflow-hidden" style="border: 1px solid var(--border-color);">
+                <!-- Header -->
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-header"></div>
+                    <div class="comparison-cell comparison-header text-center" style="color: var(--text-dim);">Subscriptions</div>
+                    <div class="comparison-cell comparison-header text-center" style="color: var(--accent-primary);">Your Own Setup</div>
+                </div>
+
+                <!-- Rows -->
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">Monthly cost</div>
+                    <div class="comparison-cell text-center">$400-600+</div>
+                    <div class="comparison-cell text-center" style="color: var(--accent-primary);">~$75 flat</div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">Price increases</div>
+                    <div class="comparison-cell text-center"><span class="crossmark">"We're updating pricing..."</span></div>
+                    <div class="comparison-cell text-center"><span class="checkmark">Never</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">Your data lives on</div>
+                    <div class="comparison-cell text-center"><span class="crossmark">Their servers</span></div>
+                    <div class="comparison-cell text-center"><span class="checkmark">YOUR server</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">If they shut down</div>
+                    <div class="comparison-cell text-center"><span class="crossmark">Panic and migrate</span></div>
+                    <div class="comparison-cell text-center"><span class="checkmark">Doesn't affect you</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">Terms & conditions</div>
+                    <div class="comparison-cell text-center"><span class="crossmark">Take it or leave</span></div>
+                    <div class="comparison-cell text-center"><span class="checkmark">Your rules</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell comparison-label">After 5 years, you own</div>
+                    <div class="comparison-cell text-center"><span class="crossmark">Nothing</span></div>
+                    <div class="comparison-cell text-center"><span class="checkmark">Everything</span></div>
+                </div>
+            </div>
+
+            <!-- Savings callout -->
+            <div class="mt-8 card p-8 text-center" style="border: 2px solid var(--accent-dim);">
+                <p class="text-lg mb-2" style="color: var(--text-secondary);">
+                    Switch from subscriptions to ownership:
+                </p>
+                <p class="text-4xl font-black mb-2" style="color: var(--accent-primary);">
+                    Save $6,000+ every year
+                </p>
+                <p style="color: var(--text-tertiary);">
+                    Setup pays for itself in under 6 months. After that, it's all yours.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get Section -->
+    <section id="features" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl">What You Own</h2>
+                <p class="section-subtitle">
+                    All your business tools. On your server. Under your control.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">File Storage & Sync</h3>
+                    <p class="card-description">
+                        Your own Dropbox. Sync files across all devices.
+                        Share with clients. Your files never touch someone else's servers.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Replaces: Dropbox, Google Drive, OneDrive
+                    </p>
+                </div>
+
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">Password Manager</h3>
+                    <p class="card-description">
+                        Secure password storage for you and your team.
+                        Share login details safely. Works everywhere.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Replaces: LastPass, 1Password, Dashlane
+                    </p>
+                </div>
+
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">Calendar & Contacts</h3>
+                    <p class="card-description">
+                        Your calendar and contacts, synced across all devices.
+                        Share calendars with team. No Google account required.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Replaces: Google Calendar, iCloud
+                    </p>
+                </div>
+
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">Secure Remote Access</h3>
+                    <p class="card-description">
+                        Access your business systems securely from anywhere.
+                        Home, client sites, on the road. Your office follows you.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Replaces: VPN subscriptions
+                    </p>
+                </div>
+
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">Automatic Backups</h3>
+                    <p class="card-description">
+                        Your data backed up automatically.
+                        Something goes wrong? Roll it back. Peace of mind, built in.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Replaces: Backup services
+                    </p>
+                </div>
+
+                <div class="card card-border-accent p-6 card-hover">
+                    <h3 class="card-title">Real Security</h3>
+                    <p class="card-description">
+                        Encrypted connections. Secure access. Your data on YOUR server,
+                        not shared with thousands of other businesses.
+                    </p>
+                    <p class="text-sm" style="color: var(--text-dim);">
+                        Better than: Multi-tenant cloud services
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 section-container" style="background: var(--bg-primary);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-4xl">One Setup Fee. Then Freedom.</h2>
+                <p class="section-subtitle">
+                    Pay once to set it up. Then just hosting costs. Forever.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Basic -->
+                <div class="card pricing-card card-hover p-8 border transition-all duration-200">
+                    <h3 class="card-title text-2xl mb-4 text-center">Basics</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$1,200</p>
+                    <p class="mb-6 text-sm text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold" style="color: var(--text-primary);">7 days to ownership</span>
+                    </p>
+                    <ul class="feature-list space-y-3 mb-6" style="color: var(--text-secondary);">
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Your own server, secured</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>File storage & sync</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Password manager</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Documentation</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>2 weeks support</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-center mb-4" style="color: var(--text-tertiary);">
+                        Then ~$75/mo hosting
+                    </p>
+                    <a href="#contact" class="btn btn-primary btn-full pricing-button mt-auto uppercase tracking-wider">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Standard (Recommended) -->
+                <div class="card pricing-card pricing-card-popular card-hover p-8 border-2 transition-all duration-200 relative">
+                    <div class="pricing-badge">
+                        Best Value
+                    </div>
+                    <h3 class="card-title text-2xl mb-4 text-center">Complete</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$2,000</p>
+                    <p class="mb-6 text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold" style="color: var(--text-primary);">10 days to ownership</span>
+                    </p>
+                    <ul class="feature-list space-y-3 mb-6" style="color: var(--text-secondary);">
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Everything in Basics, plus:</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Calendar & contacts</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Secure remote access</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Mobile apps set up</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Video walkthrough</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-center mb-4" style="color: var(--text-tertiary);">
+                        Then ~$75/mo hosting
+                    </p>
+                    <a href="#contact" class="btn btn-primary btn-full pricing-button mt-auto uppercase tracking-wider">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Everything -->
+                <div class="card pricing-card card-hover p-8 border transition-all duration-200">
+                    <h3 class="card-title text-2xl mb-4 text-center">Everything</h3>
+                    <p class="text-4xl font-black mb-2 text-center" style="color: var(--accent-primary);">$3,200</p>
+                    <p class="mb-6 text-center" style="color: var(--text-secondary);">
+                        <span class="font-semibold" style="color: var(--text-primary);">14 days to ownership</span>
+                    </p>
+                    <ul class="feature-list space-y-3 mb-6" style="color: var(--text-secondary);">
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Everything in Complete, plus:</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Automatic backups</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Monitoring & alerts</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>Website hosting</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">[+]</span>
+                            <span>1-hour training</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-center mb-4" style="color: var(--text-tertiary);">
+                        Then ~$75/mo hosting
+                    </p>
+                    <a href="#contact" class="btn btn-primary btn-full pricing-button mt-auto uppercase tracking-wider">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ownership note -->
+            <div class="mt-12 text-center">
+                <p class="section-subtitle">
+                    <strong style="color: var(--text-primary);">No lock-in.</strong>
+                    It's your server. You get all credentials and documentation.
+                    Keep us, switch to someone else, or manage it yourself. Your choice, always.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 section-container" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl">You're Probably Wondering...</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">What's the catch?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        No catch. SaaS companies charge monthly forever because that's how they make money.
+                        We charge once to set it up, then you pay hosting directly (we don't mark it up).
+                        The software is open source - free to use. You're paying for expertise to set it up properly.
+                    </p>
+                </div>
+
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Do I need to be technical?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        No. You get apps that work like any other software. If you can use Dropbox,
+                        you can use this. We handle all the technical setup - you just use it.
+                    </p>
+                </div>
+
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">What if something breaks?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        These systems are designed to run without babysitting. But you get documentation,
+                        we're a message away if you need help, and we offer ongoing support packages
+                        if you want someone keeping an eye on things.
+                    </p>
+                </div>
+
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Can I still use Xero / my accountant?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        Yes. This handles files, passwords, calendars - not accounting.
+                        Keep using Xero, MYOB, whatever works for you. This sits alongside it.
+                    </p>
+                </div>
+
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">What if I want to leave?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        It's your server. You can hire us for changes, hire someone else,
+                        or learn to manage it yourself. All credentials and documentation are yours.
+                        You're never locked in. That's the whole point.
+                    </p>
+                </div>
+
+                <div class="card faq-item p-6 border transition-all duration-200 cursor-pointer" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" style="color: var(--text-primary);">Is my data actually safer?</h3>
+                        <span class="faq-icon text-2xl" style="color: var(--accent-primary);">[+]</span>
+                    </div>
+                    <p class="faq-answer leading-relaxed" style="color: var(--text-secondary);">
+                        Your data lives on YOUR server, not shared infrastructure with thousands of other businesses.
+                        A breach at a big tech company doesn't affect you. And nobody's mining your data for advertising.
+                        All connections encrypted, access controlled. Your data, your rules.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 section-container" style="background: var(--bg-primary);">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl">Ready to Own Your Tools?</h2>
+                <p class="section-subtitle">
+                    Tell us what you're using now and what's frustrating you.
+                    We'll show you what ownership looks like.
+                </p>
+            </div>
+
+            <form action="https://api.web3forms.com/submit" method="POST" class="card p-8 border">
+                <input type="hidden" name="access_key" value="a88aea8d-2911-4be4-956d-cebfcf8f3984">
+                <input type="hidden" name="subject" value="New Contact - arcforge.au (Subscription Freedom)">
+                <input type="hidden" name="from_name" value="Arc Forge Website">
+                <input type="hidden" name="redirect" value="https://arcforge.au/?success=true#contact">
+
+                <div class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Name *</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Email *</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Phone</label>
+                        <input type="tel" id="phone" name="phone"
+                               class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;">
+                    </div>
+
+                    <div>
+                        <label for="subscriptions" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">What tools are you paying for monthly?</label>
+                        <textarea id="subscriptions" name="subscriptions" rows="3"
+                                  class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;"
+                                  placeholder="Dropbox, Google Workspace, password manager, etc."></textarea>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-semibold mb-2" style="color: var(--text-primary);">Anything else we should know?</label>
+                        <textarea id="message" name="message" rows="3"
+                                  class="w-full px-4 py-3 border transition font-mono" style="background: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary); border-radius: 4px;"
+                                  placeholder="Team size, biggest frustrations, timeline..."></textarea>
+                    </div>
+
+                    <div id="form-success" class="hidden p-4 border text-center" style="background: var(--bg-tertiary); border-color: var(--accent-primary); color: var(--accent-primary); border-radius: 4px; margin-bottom: 1rem;">
+                        Message sent! We'll be in touch within 24 hours.
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full contact-button px-8 py-4 uppercase tracking-wider">
+                        Break Free
+                    </button>
+
+                    <p class="text-sm text-center" style="color: var(--text-tertiary);">
+                        We reply within 24 hours. No hard sell.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 section-container" style="background: var(--bg-tertiary); border-top: 2px solid var(--border-color);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4" style="color: var(--text-primary);">
+                        ARC FORGE
+                    </h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                        Helping small businesses break free from subscriptions
+                        and actually own their tools.
+                    </p>
+                </div>
+
+                <div></div>
+
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Contact</h4>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li>Adelaide, Australia</li>
+                        <li><a href="mailto:hello@arcforge.au" class="transition hover:opacity-80" style="color: var(--accent-primary);">hello@arcforge.au</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-sm" style="border-top: 1px solid var(--border-color); color: var(--text-tertiary);">
+                <p class="mb-2">2025 Arc Forge. All rights reserved.</p>
+                <p>ABN: 66 913 411 628</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        function toggleFAQ(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '[+]';
+            } else {
+                answer.classList.add('active');
+                icon.textContent = '[-]';
+            }
+        }
+
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                const successMsg = document.getElementById('form-success');
+                if (successMsg) {
+                    successMsg.classList.remove('hidden');
+                    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(function() {
+                        const newUrl = window.location.pathname + window.location.hash;
+                        window.history.replaceState({}, document.title, newUrl);
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
